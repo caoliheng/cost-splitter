@@ -17,16 +17,23 @@
         <tr>
             <th>Item Name</th>
             <th>Item Cost</th>
-            <th>Split amongst...</th>
+            <th>Split:</th>
+            <th contenteditable="true">Person A</th>
+            <th contenteditable="true">Person B</th>
+            <th contenteditable="true">Person C</th>
         </tr>
         <tr>
-            <td>Name</td>
-            <td contenteditable="true" onfocusout="unfocus()" class="cost">10</td>
-            <td>Person A, Person B</td>
+            <td contenteditable="true">Name</td>
+            <td contenteditable="true" onfocusout="costUnfocus()" class="cost">10</td>
+            <td class="spacer"></td>
+            <th><input type="checkbox" id="0,0"></th>
+            <th><input type="checkbox" id="0,1"></th>
+            <th><input type="checkbox" id="0,2"></th>
         </tr>
     </table>
 
-    <button onclick="onButton()">Add new item!</button>
+    <button onclick="addItem()">Add new item!</button>
+    <button onclick="addPerson()">Add new person!</button>
 
     <p>Total Cost</p>
     <div id="display">asdf</div>
