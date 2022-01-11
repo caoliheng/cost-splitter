@@ -13,6 +13,9 @@
 <body>
     <h1>Cost Splitter App</h1>
 
+    <button onclick="addItem(); costUnfocus()">Add item/row!</button>
+    <button onclick="addPerson(); costUnfocus()">Add person/column!</button>
+    
     <table id='table'>
         <tr>
             <th>Item Name</th>
@@ -31,9 +34,6 @@
             <th><input type="checkbox" id="0,2"></th>
         </tr>
     </table>
-
-    <button onclick="addItem()">Add new item!</button>
-    <button onclick="addPerson()">Add new person!</button>
 
     <p>Total Cost</p>
     <div id="display">asdf</div>

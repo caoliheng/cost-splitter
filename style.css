@@ -3,7 +3,11 @@ table, th, td {
     margin: 1px;
 }
 
-spacer {
+td {
+    text-align: center;
+}
+
+.spacer {
     border: unset;
     margin: unset;
 }
