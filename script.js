@@ -43,7 +43,7 @@ function addPerson(){
     let paymentTable = document.getElementById("paymentTable");
 
     let costPerson = document.createElement("th"); // create header
-    costPerson.innerText = "New"; // give name of "New"
+    costPerson.innerText = "New Person"; // give name of "New"
     costPerson.contentEditable = "true"; // editable 
     costPerson.addEventListener("focusout", updatePeople);
     costTable.rows[0].appendChild(costPerson);
@@ -56,10 +56,9 @@ function addPerson(){
     }
 
     let payment_person = document.createElement("th"); // create header
-    payment_person.innerText = "New"; // give name of "New"
     paymentTable.rows[0].appendChild(payment_person);
 
-    paymentTable.rows[1].insertCell(-1).innerText = 10;
+    paymentTable.rows[1].insertCell(-1).innerText = 0;
 }
 
 // this function sums up all of the item costs
