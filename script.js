@@ -80,15 +80,20 @@ function updateTotalCost(){
 
     document.getElementById("subtotalDisplay").innerText = sum.toFixed(2);
 
-
-    const adder_val = parseFloat(document.getElementById("globalAdder").innerText);
-    if (!isNaN(adder_val)) {
-        sum += adder_val;
+    let adder_val = parseFloat(document.getElementById("globalAdder").innerText);
+    if (isNaN(adder_val)) {
+        adder_val = 0;
     }
     
-    const multiplier_val = parseFloat(document.getElementById("globalMultiplier").innerText);
-    if (!isNaN(multiplier_val)) {
-        sum *= multiplier_val;
+    let multiplier_val = parseFloat(document.getElementById("globalMultiplier").innerText);
+    if (isNaN(multiplier_val)) {
+        multiplier_val = 1;
+    }
+
+    if (document.getElementById("add_before_mul").checked) {
+        sum = (sum + adder_val) * multiplier_val;
+    } else {
+        sum = sum * multiplier_val + adder_val;
     }
 
     document.getElementById("totalDisplay").innerText = sum.toFixed(2); // display with precision 2
@@ -149,10 +154,21 @@ function updatePayment(){
 
     const subtotal = parseFloat(document.getElementById("subtotalDisplay").innerText); // shouldn't be NaN
 
+    const add_before_mul = document.getElementById("add_before_mul").checked;
+
     let paymentTable = document.getElementById("paymentTable");
     for (let i = 0; i < people.length; ++i){
-        const proportion_of_adder = costs[i]/subtotal * adder_val;
-        const cost = multiplier_val * (costs[i] + proportion_of_adder);
+        let cost;
+        if (add_before_mul) {
+            const proportion_of_adder = costs[i]/subtotal * adder_val;
+            cost = multiplier_val * (costs[i] + proportion_of_adder);
+        } else {
+            const multiplied = costs[i] * multiplier_val;
+            const proportion_of_adder = costs[i]/subtotal * adder_val;
+            cost = multiplied + proportion_of_adder;
+        }
+        
+
         paymentTable.rows[1].cells[i].innerText = cost.toFixed(2);
     }
 }
