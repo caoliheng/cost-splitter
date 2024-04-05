@@ -167,5 +167,3 @@ function updateAll(){
     updateCost();
     updatePeople();
 }
-
-updateAll();
