@@ -61,6 +61,10 @@ function addPerson(){
     paymentTable.rows[1].insertCell(-1).innerText = 0;
 }
 
+function getSubtotal() {
+    
+}
+
 // this function sums up all of the item costs
 // this can be used as a way to check if every item/price has been entered
 function updateTotalCost(){
@@ -73,7 +77,21 @@ function updateTotalCost(){
             sum += f;
         }
     }
-    document.getElementById("display").innerText = sum.toFixed(2); // display with precision 2
+
+    document.getElementById("subtotalDisplay").innerText = sum.toFixed(2);
+
+
+    const adder_val = parseFloat(document.getElementById("globalAdder").innerText);
+    if (!isNaN(adder_val)) {
+        sum += adder_val;
+    }
+    
+    const multiplier_val = parseFloat(document.getElementById("globalMultiplier").innerText);
+    if (!isNaN(multiplier_val)) {
+        sum *= multiplier_val;
+    }
+
+    document.getElementById("totalDisplay").innerText = sum.toFixed(2); // display with precision 2
 
     // console.log(document.getElementById("0,0").checked);
 }
@@ -119,9 +137,23 @@ function updatePayment(){
         }
     }
 
+    let adder_val = parseFloat(document.getElementById("globalAdder").innerText);
+    if (isNaN(adder_val)) {
+        adder_val = 0;
+    }
+    
+    let multiplier_val = parseFloat(document.getElementById("globalMultiplier").innerText);
+    if (isNaN(multiplier_val)) {
+        multiplier_val = 1;
+    }
+
+    const subtotal = parseFloat(document.getElementById("subtotalDisplay").innerText); // shouldn't be NaN
+
     let paymentTable = document.getElementById("paymentTable");
     for (let i = 0; i < people.length; ++i){
-        paymentTable.rows[1].cells[i].innerText = costs[i].toFixed(2);
+        const proportion_of_adder = costs[i]/subtotal * adder_val;
+        const cost = multiplier_val * (costs[i] + proportion_of_adder);
+        paymentTable.rows[1].cells[i].innerText = cost.toFixed(2);
     }
 }
 
@@ -135,3 +167,5 @@ function updateAll(){
     updateCost();
     updatePeople();
 }
+
+updateAll();

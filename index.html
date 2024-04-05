@@ -13,13 +13,13 @@
 <body>
     <nav>
 		<a href="">App</a>
-		<a href="about.html">Info</a>
+		<a href="about.html">Info (Implementation Details)</a>
 		<a href="https://github.com/lihengcao/">Contact</a>
 	</nav>
 
     <h1>Cost Splitter</h1>
 
-    <h2>Cost Input</h2>
+    <h2>Individual Inputs</h2>
 
     <button onclick="addItem(); updateCost()">Add item/row!</button>
     <button onclick="addPerson(); updateCost()">Add person/column!</button>
@@ -35,7 +35,7 @@
         </tr>
         <tr>
             <td contenteditable="true">Name</td>
-            <td contenteditable="true" onfocusout="updateCost()" class="cost">10</td>
+            <td contenteditable="true" onfocusout="updateCost()" class="cost">10.00</td>
             <td class="spacer"></td>
             <td><input type="checkbox"></th>
             <td><input type="checkbox"></th>
@@ -43,7 +43,7 @@
         </tr>
         <tr>
             <td contenteditable="true">Name</td>
-            <td contenteditable="true" onfocusout="updateCost()" class="cost">20</td>
+            <td contenteditable="true" onfocusout="updateCost()" class="cost">20.00</td>
             <td class="spacer"></td>
             <td><input type="checkbox"></th>
             <td><input type="checkbox"></th>
@@ -51,10 +51,28 @@
         </tr>
     </table>
 
-    <h3>Total Cost</h3>
-    <div id="display">30.00</div>
+    <h2>Global Inputs (tax, tip)</h2>
 
-    <h2>Payment Output</h2>
+    <table id='globalTable'>
+        <tr>
+            <th>Global</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Adder (tax)</td>
+            <td contenteditable="true" onfocusout="updateCost()" id="globalAdder">0.00</td>
+        </tr>
+        <tr>
+            <td>Multiplier (tip)</td>
+            <td contenteditable="true" onfocusout="updateCost()" id="globalMultiplier">1.00</td>
+        </tr>
+    </table>
+
+    <h2>Total</h2>
+    <a>Subtotal: </a><a id="subtotalDisplay">30.00</a><br>
+    <a>Total: </a><a id="totalDisplay">30.00</a>
+
+    <h1>Payment Output</h1>
     <table id='paymentTable'>
         <tr>
             <th></th>
